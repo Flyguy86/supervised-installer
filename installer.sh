@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+apt install network-manager apparmor jq dbus -y
+
 declare -a MISSING_PACKAGES
 
 function info { echo -e "\e[32m[info] $*\e[39m"; }
