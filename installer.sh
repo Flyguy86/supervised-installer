@@ -153,7 +153,12 @@ fi
 #    esac
 #    shift
 #done
-MACHINE=raspberrypi3
+
+RPI3=$(echo $(cat /sys/firmware/devicetree/base/model) | grep 3)
+RPI4=$(echo $(cat /sys/firmware/devicetree/base/model) | grep 4)
+[[ ! -z "$RPI3" ]] && MACHINE=raspberrypi3
+[[ ! -z "$RPI4" ]] && MACHINE=raspberrypi4
+
 PREFIX=${PREFIX:-/usr}
 SYSCONFDIR=${SYSCONFDIR:-/etc}
 DATA_SHARE=${DATA_SHARE:-$PREFIX/share/hassio}
