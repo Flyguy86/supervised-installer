@@ -247,7 +247,11 @@ info "Installing the 'ha' cli"
 curl -sL ${URL_HA} > "${PREFIX}/bin/ha"
 chmod a+x "${PREFIX}/bin/ha"
 
+## Removeing on boot install script
+rm /var/lib/dietpi/postboot.d/HomeSupervisorInstaller.sh
+
 info
+info "Removing HomeSupervisos install script on boot"
 info "Home Assistant supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:8123"
