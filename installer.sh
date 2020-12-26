@@ -2,6 +2,8 @@
 set -e
 ## Make sure Wifi is turn on
 sed -i.bak 's|dtoverlay=disable-wifi|#dtoverlay=disable-wifi|' /boot/config.txt
+sed -i.bak 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 # Install dependencies for HomeAssistant
 apt-get install -y apt-utils software-properties-common apparmor-utils apt-transport-https ca-certificates curl dbus jq 
