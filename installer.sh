@@ -270,6 +270,5 @@ info
 info "Home Assistant supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:8123"
+info "Reboot required before Hotspot enabled"
 info
-
-reboot
