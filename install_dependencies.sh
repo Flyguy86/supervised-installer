@@ -10,8 +10,6 @@ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Install dependencies for HomeAssistant
 apt-get install -y apt-utils software-properties-common apparmor-utils apt-transport-https ca-certificates curl dbus jq 
 
-# Install Docker
-curl -fsSL get.docker.com | sh
 
 # Check if Modem Manager is enabled
 if cat /sys/firmware/devicetree/base/model | grep '3' > /dev/null 2>&1; then
@@ -20,6 +18,10 @@ elif cat /sys/firmware/devicetree/base/model | grep '4' > /dev/null 2>&1; then
     echo "raspberrypi4" > ~/machine
 fi
 
+
+# Install Docker
+curl -fsSL get.docker.com > /var/lib/dietpi/postboot.d/DockerInstaller.sh
+# Hass.io supervisor installer
 curl -sL https://raw.githubusercontent.com/Flyguy86/supervised-installer/master/installer.sh > /var/lib/dietpi/postboot.d/HomeSupervisorInstaller.sh
 
 reboot
