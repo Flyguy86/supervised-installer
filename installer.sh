@@ -1,18 +1,5 @@
 #!/bin/bash
 set -e
-## Make sure Wifi is turn on
-sed -i.bak 's|dtoverlay=disable-wifi|#dtoverlay=disable-wifi|' /boot/config.txt
-sed -i.bak 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
-# Install dependencies for HomeAssistant
-apt-get install -y apt-utils software-properties-common apparmor-utils apt-transport-https ca-certificates curl dbus jq 
-
-# Isoalted network manager install 
-#apt-get install -y network-manager
-
-# Install Docker
-curl -fsSL get.docker.com | sh
 
 declare -a MISSING_PACKAGES
 
@@ -20,18 +7,8 @@ function info { echo -e "\e[32m[info] $*\e[39m"; }
 function warn  { echo -e "\e[33m[warn] $*\e[39m"; }
 function error { echo -e "\e[31m[error] $*\e[39m"; exit 1; }
 
-cat /sys/firmware/devicetree/base/model | tee MODEL=$# &> /dev/null
-
-## Get's RaspberryPI 3 or 4 Machine ID and uses for Hass.io docker below.
-if [[ ! -z $(echo $MODEL | grep 3) ]]
-then
-    MACHINE=raspberrypi3
-elif [[ ! -z $(echo $MODEL | grep 4) ]]
-then
-    MACHINE=raspberrypi4
-fi
+MACHINE=`cat ~/machine`
 echo $MACHINE
-
 ARCH=$(uname -m)
 
 IP_ADDRESS=$(hostname -I | awk '{ print $1 }')
@@ -274,5 +251,4 @@ info
 info "Home Assistant supervised is now installed"
 info "First setup will take some time, when it's ready you can reach it here:"
 info "http://${IP_ADDRESS}:8123"
-info "Reboot required before Hotspot enabled"
 info
