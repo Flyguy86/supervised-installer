@@ -127,33 +127,33 @@ fi
 #systemctl restart "${SERVICE_NM}"
 
 # Parse command line parameters
-while [[ $# -gt 0 ]]; do
-    arg="$1"
+#while [[ $# -gt 0 ]]; do
+#    arg="$1"
 
-    case $arg in
-        -m|--machine)
-            MACHINE=$2
-            shift
-            ;;
-        -d|--data-share)
-            DATA_SHARE=$2
-            shift
-            ;;
-        -p|--prefix)
-            PREFIX=$2
-            shift
-            ;;
-        -s|--sysconfdir)
-            SYSCONFDIR=$2
-            shift
-            ;;
-        *)
-            error "Unrecognized option $1"
-            ;;
-    esac
-    shift
-done
-
+#    case $arg in
+#        -m|--machine)
+#            MACHINE=$2
+#            shift
+#            ;;
+#        -d|--data-share)
+#            DATA_SHARE=$2
+#            shift
+#            ;;
+#        -p|--prefix)
+#            PREFIX=$2
+#            shift
+#            ;;
+#        -s|--sysconfdir)
+#            SYSCONFDIR=$2
+#            shift
+#            ;;
+#        *)
+#            error "Unrecognized option $1"
+#            ;;
+#    esac
+#    shift
+#done
+MACHINE=raspberrypi3
 PREFIX=${PREFIX:-/usr}
 SYSCONFDIR=${SYSCONFDIR:-/etc}
 DATA_SHARE=${DATA_SHARE:-$PREFIX/share/hassio}
