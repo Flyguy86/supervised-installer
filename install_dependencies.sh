@@ -13,16 +13,13 @@ apt-get install -y apt-utils software-properties-common apparmor-utils apt-trans
 # Install Docker
 curl -fsSL get.docker.com | sh
 
-cat /sys/firmware/devicetree/base/model | tee MODEL=$# &> /dev/null
-
-## Get's RaspberryPI 3 or 4 Machine ID and uses for Hass.io docker below.
-if [[ ! -z $(echo $MODEL | grep 3) ]]
-then
-    MACHINE=raspberrypi3
-elif [[ ! -z $(echo $MODEL | grep 4) ]]
-then
-    MACHINE=raspberrypi4
+# Check if Modem Manager is enabled
+if cat /sys/firmware/devicetree/base/model | grep '3' > /dev/null 2>&1; then
+    echo "raspberrypi3" > ~/machine
+elif cat /sys/firmware/devicetree/base/model | grep '4' > /dev/null 2>&1; then
+    echo "raspberrypi4" > ~/machine
 fi
-echo $MACHINE > ~/machine
 
 curl -sL https://raw.githubusercontent.com/Flyguy86/supervised-installer/master/installer.sh > /var/lib/dietpi/postboot.d/HomeSupervisorInstaller.sh
+
+reboot
