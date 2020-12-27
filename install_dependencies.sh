@@ -5,7 +5,8 @@ set -e
 sed -i.bak 's|dtoverlay=disable-wifi|#dtoverlay=disable-wifi|' /boot/config.txt
 # Enable internet forwarding from Wifi to Ethernet
 sed -i.bak 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+## Need to do this later, in boot process
+#iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 # Install dependencies for HomeAssistant
 apt-get install -y apt-utils software-properties-common apparmor-utils apt-transport-https ca-certificates curl dbus jq 
