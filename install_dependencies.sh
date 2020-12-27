@@ -25,8 +25,8 @@ fi
 
 # Install Docker
 curl -fsSL get.docker.com > /var/lib/dietpi/postboot.d/DockerInstaller.sh
-echo "rm /var/lib/dietpi/postboot.d/DockerInstaller.sh" >> /var/lib/dietpi/postboot.d/
-echo "sleep 5; reboot" >> /var/lib/dietpi/postboot.d/
+echo "rm /var/lib/dietpi/postboot.d/DockerInstaller.sh" >> /var/lib/dietpi/postboot.d/DockerInstaller.sh
+echo "sleep 5; reboot" >> /var/lib/dietpi/postboot.d/DockerInstaller.sh
 
 # Hass.io supervisor installer
 curl -sL https://raw.githubusercontent.com/Flyguy86/supervised-installer/master/installer.sh > /var/lib/dietpi/postboot.d/HomeSupervisorInstaller.sh
