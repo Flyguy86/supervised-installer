@@ -249,7 +249,6 @@ chmod a+x "${PREFIX}/bin/ha"
 
 ## Removeing on boot install script
 rm /var/lib/dietpi/postboot.d/HomeSupervisorInstaller.sh
-rm /var/lib/dietpi/postboot.d/DockerInstaller.sh
 
 info
 info "Removing HomeSupervisos install script on boot"
